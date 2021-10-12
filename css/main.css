@@ -15,6 +15,13 @@ body{
     margin: 0;
 }
 
+.page-header{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: white;
+}
+
 /* //////////////////////////////////////////////// */
 
 .search_ico::before{
@@ -44,7 +51,10 @@ body{
 @media only screen and (max-width: 1000px){ /*desktop*/
     .desktop{display: none!important;}
     .top_nav{
-        padding: 2em 1em!important;
+        padding: 1.5em 1em!important;
+    }
+    .banner_caption{
+        font-size: 2em!important;
     }
 }
 
@@ -52,8 +62,12 @@ body{
     .mobile{display: none!important;}
 }
 
+.splide__slide img{
+    width: 100%;
+}
+
 .top_nav{
-    padding: 2em 22em;
+    padding: 1.5em 22em;
     display: flex;
     gap: 1em;
 }
@@ -77,4 +91,30 @@ body{
     display: flex;
     gap: 1em;
     margin-left: 1em;
+}
+
+.banner_caption{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: white;
+    flex-direction: column;
+    font-size: 5em;
+}
+
+.banner_caption > span:first-child{
+    font-size: .5em;
+    font-weight: lighter;
+}
+
+.banner_caption > span:last-child{
+    font-size: .5em;
+    font-weight: lighter;
 }
