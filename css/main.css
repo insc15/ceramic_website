@@ -1,0 +1,80 @@
+@font-face {
+    font-family: "icon";
+    src: url("../assets/fontawesome-pro-5.15.3-web/webfonts/fa-light-300.eot");
+    src: url("../assets/fontawesome-pro-5.15.3-web/webfonts/fa-light-300.woff") format("woff"),
+        url("../assets/fontawesome-pro-5.15.3-web/webfonts/fa-light-300.svg") format("svg");
+}
+
+/* @font-face {
+    font-family: "exo";
+    src: url("../assets/fonts/Exo-Regular.ttf");
+} */
+
+body{
+    font-family: Roboto;
+    margin: 0;
+}
+
+/* //////////////////////////////////////////////// */
+
+.search_ico::before{
+    content: "\f002";
+    font-family: "icon";
+    /* font-weight: bolder; */
+}
+
+.cart_ico::before{
+    content: "\f07a";
+    font-family: "icon";
+    /* font-weight: bolder; */
+}
+
+.menu_ico::before{
+    content: "\f0c9";
+    font-family: "icon";
+    /* font-weight: bolder; */
+}
+
+/* //////////////////////////////////////////////// */
+
+.size_1-5{
+    font-size: 1.5em;
+}
+
+@media only screen and (max-width: 1000px){ /*desktop*/
+    .desktop{display: none!important;}
+    .top_nav{
+        padding: 2em 1em!important;
+    }
+}
+
+@media only screen and (min-width: 1000px){
+    .mobile{display: none!important;}
+}
+
+.top_nav{
+    padding: 2em 22em;
+    display: flex;
+    gap: 1em;
+}
+
+.top_nav > img{
+    width: 9em;
+}
+
+.top_menu{
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    margin-left: auto;
+}
+
+.top_menu_item{
+    cursor: pointer;
+}
+
+.top_menu_icon{
+    display: flex;
+    gap: 1em;
+    margin-left: 1em;
+}
