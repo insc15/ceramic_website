@@ -5,13 +5,13 @@
         url("../assets/fontawesome-pro-5.15.3-web/webfonts/fa-light-300.svg") format("svg");
 }
 
-/* @font-face {
+@font-face {
     font-family: "exo";
     src: url("../assets/fonts/Exo-Regular.ttf");
-} */
+} 
 
 body{
-    font-family: Roboto;
+    font-family: "exo";
     margin: 0;
 }
 
