@@ -22,8 +22,54 @@ body{
     background: white;
 }
 
-/* //////////////////////////////////////////////// */
+/* /////////////DEFINE///////////////////// */
 
+.grid_group{
+    display: grid;
+}
+
+.flex_group{
+    display: flex;
+}
+
+.flex_wrap{
+    flex-wrap: wrap;
+}
+
+.flex_center{
+    justify-content: center;
+}
+
+.e_center{
+    margin: auto;
+    width: fit-content;
+}
+
+.banner{
+    height: 5em;
+    text-align: center;
+    background: #927a56;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
+.button{
+    padding: 1em 2em;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: all .5s cubic-bezier(0.24, 0.57, 0.58, 1);
+    margin-bottom: 1em;
+}
+
+.button:hover{
+    background-color: black;
+    color: white;
+}
+
+/* //////////////////////////////////////////////// */
 .search_ico::before{
     content: "\f002";
     font-family: "icon";
@@ -44,8 +90,28 @@ body{
 
 /* //////////////////////////////////////////////// */
 
+[product]{
+    cursor: pointer;
+    transition: border .5s cubic-bezier(0.24, 0.57, 0.58, 1);
+    border: solid 1px white;
+}
+
+[product] > img{
+    width: 100%;
+}
+
+[product]:hover{
+    border: solid 1px black;
+}
+
+/* //////////////////////////////////////////////// */
+
 .size_1-5{
     font-size: 1.5em;
+}
+
+.price::before{
+    content: "$";
 }
 
 @media only screen and (max-width: 1000px){ /*desktop*/
@@ -56,10 +122,16 @@ body{
     .banner_caption{
         font-size: 2em!important;
     }
+    .product_list > .item{
+        width: 10em!important;
+    }
 }
 
 @media only screen and (min-width: 1000px){
     .mobile{display: none!important;}
+}
+
+@media only screen and (max-width: 400px){
 }
 
 .splide__slide img{
@@ -78,7 +150,7 @@ body{
 
 .top_menu{
     display: flex;
-    gap: 1em;
+    gap: 2em;
     align-items: center;
     margin-left: auto;
 }
@@ -117,4 +189,36 @@ body{
 .banner_caption > span:last-child{
     font-size: .5em;
     font-weight: lighter;
+}
+
+.product_display{
+    margin: 5em auto;
+    gap: 1em;
+}
+
+.product_display > .item{
+    width: 18em;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.product_display > .item > img{
+    width: 8em;
+}
+
+.product_list{
+    margin-top: 3em;
+    margin-bottom: 1em;
+    gap: 1em;
+}
+
+.product_list > .item{
+    width: 15em;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 1em;
 }
