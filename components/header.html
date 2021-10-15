@@ -1,14 +1,36 @@
 <div class="top_nav">
     <img src="../assets/logo.png" alt="logo123">
     <div class="top_menu">
-        <div class="top_menu_item desktop">Home</div>
-        <div class="top_menu_item desktop">Pricing</div>
-        <div class="top_menu_item desktop">Services</div>
-        <div class="top_menu_item desktop">Contact</div>
+        <div button="index" class="top_menu_item desktop">Home</div>
+        <div button="pricing" class="top_menu_item desktop">Pricing</div>
+        <div button="services" class="top_menu_item desktop">Services</div>
+        <div button="contact" class="top_menu_item desktop">Contact</div>
         <div class="top_menu_icon">
             <div class="top_menu_item search_ico size_1-5"></div>
             <div class="top_menu_item cart_ico size_1-5"></div>
             <div class="top_menu_item menu_ico size_1-5 mobile"></div>
+        </div>
+    </div>
+</div>
+<div class="side_nav hide-menu text-white mobile">
+    <div class="side_nav_container">
+        <div class="text-gray side_nav_list">
+        <div button="index">Home</div>
+        <div button="pricing">Pricing</div>
+        <div button="services">Services</div>
+        <div button="contact">Contact</div>
+        <script>
+            if(window.location.pathname == "/" || window.location.pathname == "/index.html")
+            {
+                document.getElementsByClassName("side_nav_list")[0].children[0].classList.add("current-path");
+            }else if(window.location.pathname == "/pricing.html"){
+                document.getElementsByClassName("side_nav_list")[0].children[1].classList.add("current-path");
+            }else if(window.location.pathname == "/services.html"){
+                document.getElementsByClassName("side_nav_list")[0].children[2].classList.add("current-path");
+            }else if(window.location.pathname == "/contact.html"){
+                document.getElementsByClassName("side_nav_list")[0].children[3].classList.add("current-path");
+            }
+        </script>
         </div>
     </div>
 </div>

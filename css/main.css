@@ -22,6 +22,10 @@ body{
     background: white;
 }
 
+.page-footer{
+    background-color: #927a56;
+    padding: 2em 0;
+}
 /* /////////////DEFINE///////////////////// */
 
 .grid_group{
@@ -125,6 +129,12 @@ body{
     .product_list > .item{
         width: 10em!important;
     }
+    .page-footer > .containter{
+        width: 80vw!important;
+    }
+    .page-footer > .containter > .item{
+        width: 100%!important;
+    }
 }
 
 @media only screen and (min-width: 1000px){
@@ -221,4 +231,64 @@ body{
     flex-direction: column;
     text-align: center;
     padding-bottom: 1em;
+}
+
+
+.side_nav{
+    backdrop-filter: blur(2px);
+    position: absolute;
+    right: 0;
+    left: 0;
+}
+
+.side_nav_container{
+    width: 65%;
+    height: 100vh;
+    background: #927a56;
+    display: flex;
+    flex-direction: column;
+}
+
+.side_nav_list{
+    padding: 1.5em 1em 1.5em 0;
+}
+
+.side_nav_list > div{
+    padding-left: 1em;
+    color: white;
+}
+
+.hide-menu {
+    opacity: 0;
+    transform: translate3d(-411px, 0, 0);
+    transition: all 0.3s cubic-bezier(0.54, 0.07, 0, 0.96);
+}
+
+.show-menu {
+    z-index: 1;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.3s cubic-bezier(0.54, 0.07, 0, 0.96);
+}
+
+.current-path{
+    border-left: 3px solid white;
+}
+
+.page-footer > .containter{
+    color: white;
+    gap: 1em;
+}
+
+.page-footer > .containter > .item{
+    width: 25em;
+}
+
+.page-footer > .containter > .item > p:first-child{
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+.page-footer > .containter > .item > p:last-child{
+    overflow-wrap: break-word;
 }
