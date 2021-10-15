@@ -92,6 +92,20 @@ body{
     /* font-weight: bolder; */
 }
 
+.facebook_ico::before{
+    content: "\f09a";
+    font-family: "icon";
+}
+
+.instagram_ico::before{
+    content: "\f16d";
+    font-family: "icon";
+}
+
+.mail_ico::before{
+    content: "\f0e0";
+    font-family: "icon";
+}
 /* //////////////////////////////////////////////// */
 
 [product]{
@@ -291,4 +305,26 @@ body{
 
 .page-footer > .containter > .item > p:last-child{
     overflow-wrap: break-word;
+}
+
+.contact_container{
+    gap: 3em;
+    margin: 2em 0;
+    text-align: center;
+}
+
+.contact_item{
+    width: 13em;
+}
+
+.contact_item > p:first-child{
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.social_list{
+    display: flex;
+    justify-content: center;
+    font-size: 1.5em;
+    color: black;
 }
