@@ -20,6 +20,23 @@ function toogle_side_nav(){
   }
 }
 
+function setInputFilter(textbox, inputFilter) {
+  ["input"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  });
+}
+
 $(function(){ $(".page-header").load("components/header.html") });
 $(function(){ $(".page-footer").load("components/footer.html") });
 
@@ -29,7 +46,12 @@ document.onreadystatechange = function () {
 
       $(".menu_ico").click(function(){ toogle_side_nav(); });
       $("[button]").click(function(){ load_page($(this).attr("button")); })
-    
+
+      if($("#intLimitTextBox").length){
+        setInputFilter(document.getElementById("intLimitTextBox"), function(value) {
+          return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 100); });
+      }
+
       $(document).mouseup(function(e) 
       {
           var container_2 = $(".side_nav_container");
