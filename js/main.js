@@ -46,6 +46,19 @@ document.onreadystatechange = function () {
 
       $(".menu_ico").click(function(){ toogle_side_nav(); });
       $("[button]").click(function(){ load_page($(this).attr("button")); })
+      $(".minus_ico").click(function(){ 
+        let value = parseInt( $(this).parents().children("input").val() );
+        if ( value > 1 ){
+          $(this).parents().children("input").val( value -= 1 );   
+        }
+      });
+
+      $(".plus_ico").click(function(){ 
+        let value = parseInt( $(this).parents().children("input").val() );
+        if ( value <= 100 ){
+          $(this).parents().children("input").val( value += 1 );   
+        }
+      });
 
       if($("#intLimitTextBox").length){
         setInputFilter(document.getElementById("intLimitTextBox"), function(value) {
