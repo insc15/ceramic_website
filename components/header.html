@@ -1,7 +1,8 @@
 <div class="top_nav">
     <img gsrc="1D24soQw44qIV51UIDYiy5ok3R9tAh7lP" alt="logo123">
     <div class="top_menu">
-        <div button="index" class="top_menu_item desktop">Home</div>
+        <div button="index" class="top_menu_item desktop">Home</div>        
+        <div button="shop" class="top_menu_item desktop">Shop</div>
         <div button="pricing" class="top_menu_item desktop">Pricing</div>
         <div button="services" class="top_menu_item desktop">Services</div>
         <div button="contact" class="top_menu_item desktop">Contact</div>
@@ -16,6 +17,7 @@
     <div class="side_nav_container">
         <div class="text-gray side_nav_list">
         <div button="index">Home</div>
+        <div button="shop">Shop</div>
         <div button="pricing">Pricing</div>
         <div button="services">Services</div>
         <div button="contact">Contact</div>
@@ -23,12 +25,14 @@
             if(window.location.pathname == "/" || window.location.pathname == "/index.html")
             {
                 document.getElementsByClassName("side_nav_list")[0].children[0].classList.add("current-path");
-            }else if(window.location.pathname == "/pricing.html"){
+            }else if(window.location.pathname == "/shop.html"){
                 document.getElementsByClassName("side_nav_list")[0].children[1].classList.add("current-path");
-            }else if(window.location.pathname == "/services.html"){
+            }else if(window.location.pathname == "/pricing.html"){
                 document.getElementsByClassName("side_nav_list")[0].children[2].classList.add("current-path");
-            }else if(window.location.pathname == "/contact.html"){
+            }else if(window.location.pathname == "/services.html"){
                 document.getElementsByClassName("side_nav_list")[0].children[3].classList.add("current-path");
+            }else if(window.location.pathname == "/contact.html"){
+                document.getElementsByClassName("side_nav_list")[0].children[4].classList.add("current-path");
             }
         </script>
         </div>

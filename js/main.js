@@ -37,6 +37,12 @@ function setInputFilter(textbox, inputFilter) {
   });
 }
 
+function update_cart(){
+  if($(".product_container").children().length < 1){
+    $(".product_container").html("<h2 class='e_center'>You have no item :<<</h2>")
+  }
+}
+
 $(function(){ $(".page-header").load("components/header.html") });
 $(function(){ $(".page-footer").load("components/footer.html") });
 
@@ -46,6 +52,11 @@ document.onreadystatechange = function () {
 
       $(".menu_ico").click(function(){ toogle_side_nav(); });
       $("[button]").click(function(){ load_page($(this).attr("button")); })
+      $(".remove_ico").click(function(){
+        $(this).parent().parent().remove();
+        update_cart();
+      });
+
       $(".minus_ico").click(function(){ 
         let value = parseInt( $(this).parents().children("input").val() );
         if ( value > 1 ){

@@ -185,6 +185,9 @@ a{
     .product_info{
         width: 45%!important;
     }
+    .product_section{
+        width: 91%!important;
+    }
 }
 
 @media only screen and (min-width: 1000px){
@@ -438,4 +441,21 @@ a{
 
 .product_count > input:focus-visible{
     outline: none;
+}
+
+.checkout_container{
+    gap: 1em;
+}
+
+.checkout_total > span{
+    margin: auto;
+}
+
+.product_section{
+    width: 70%;
+    margin: auto;
+}
+
+.product_section > .product_list{
+    justify-content: flex-start;
 }
