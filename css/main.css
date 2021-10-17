@@ -368,7 +368,7 @@ a{
     transition: all .5s cubic-bezier(0.24, 0.57, 0.58, 1);
 }
 
-.social_list > div:hover{
+.social_list > a > div:hover{
     cursor: pointer;
     transform: scale(1.2);
 }
