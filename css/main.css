@@ -33,6 +33,11 @@ body{
     background-color: #927a56;
     padding: 2em 0;
 }
+
+a{
+    text-decoration: none;
+    color: unset;
+}
 /* /////////////DEFINE///////////////////// */
 
 .grid_group{
