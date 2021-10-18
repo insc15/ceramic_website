@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+    <title>HAIHA CERAMIC</title>
+    <meta charset="utf-8"/>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+</head>
+<html>
+    <body>
+        <div class="page-header"></div>
+        <div class="page-body">
+            <section>
+                <div class="flex_group flex_wrap flex_center product_p">
+                    <div class="preview_image">
+                        <div class="splide" id="main-slider">
+                            <div class="splide__track">
+                                <ul class="splide__list banner_items_container">
+                                    <li class="splide__slide"><img gsrc="1LikSBT2mAkJp1tZbL5FT8Vw2MdV6PniB"></li>
+                                    <li class="splide__slide"><img gsrc="1Z82pCxm2YLOHojhbEyyWJbZdRtXoawL3"></li>
+                                    <li class="splide__slide"><img gsrc="1UCDuKzEdBokzh1bZ1Wn-4zq-CcGfW9AC"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="splide" id="thumbnail-slider">
+                            <div class="splide__track">
+                                <ul class="splide__list banner_items_container">
+                                    <li class="splide__slide"><img gsrc="1LikSBT2mAkJp1tZbL5FT8Vw2MdV6PniB"></li>
+                                    <li class="splide__slide"><img gsrc="1Z82pCxm2YLOHojhbEyyWJbZdRtXoawL3"></li>
+                                    <li class="splide__slide"><img gsrc="1UCDuKzEdBokzh1bZ1Wn-4zq-CcGfW9AC"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <script>
+                                var main = new Splide( '#main-slider', {
+                                type       : 'fade',
+                                heightRatio: 0.7,
+                                pagination : false,
+                                arrows     : false,
+                                cover      : true,
+                                breakpoints : {
+                                    1000: {
+                                        heightRatio: 0.8,
+                                    },
+                                },
+                                } );
+
+                                var thumbnails = new Splide( '#thumbnail-slider', {
+                                rewind          : true,
+                                fixedWidth      : 104,
+                                fixedHeight     : 58,
+                                isNavigation    : true,
+                                gap             : 10,
+                                pagination      : false,
+                                cover           : true,
+                                dragMinThreshold: {
+                                    mouse: 4,
+                                    touch: 10,
+                                },
+                                } );
+
+                                main.sync( thumbnails );
+                                main.mount();
+                                thumbnails.mount();
+                        </script>
+                    </div>
+                    <div class="product_info grid_group">
+                        <div class="product_title">Ceramic Bowl</div>
+                        <div><span class="price">3.00</span></div>
+                        <div class="product_description"><span>Integer condime condimentum condimented dsemeu u finibus portturabitur imperdiet.</span></div>
+                        <div class="product_count">
+                            <div class="minus_ico"></div>
+                            <input id="intLimitTextBox" type="text" value="1">
+                            <div class="plus_ico"></div>
+                        </div>
+                        <div class="button">Add to cart</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="page-footer"></div>
+    </body>
+</html>
