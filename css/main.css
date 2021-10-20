@@ -27,6 +27,7 @@ body{
     top: 0;
     z-index: 100;
     background: white;
+    box-shadow: 0 0 8px #bbbbbb;
 }
 
 .page-footer{
@@ -38,6 +39,7 @@ a{
     text-decoration: none;
     color: unset;
 }
+
 /* /////////////DEFINE///////////////////// */
 
 .grid_group{
@@ -293,7 +295,7 @@ a{
 
 .product_list > .item{
     background: #f3f3f3;
-    box-shadow: 0px 0px 8px #f3f3f3;
+    box-shadow: 1px 4px 8px #bbbbbb;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -401,6 +403,10 @@ a{
     padding: 2em 0;
 }
 
+.product_container > .item{
+    box-shadow: 0px 0px 8px #00000082;
+}
+
 .product_container:last-child{
     border-bottom: 1px solid #c0c0c0;
 }
@@ -439,15 +445,24 @@ a{
     width: fit-content;
     display: flex;
     border: 1px solid black;
-    height: 1.8em;
     align-items: center;
 }
 
 .product_count > div{
     width: 1.5em;
     text-align: center;
-    font-weight: bolder;
+    /* font-weight: bolder; */
     cursor: pointer;
+    height: 1.62em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .2s ease-in;
+}
+
+.product_count > div:hover{
+    background-color: black;
+    color: white;
 }
 
 .product_count > input{
@@ -492,7 +507,7 @@ a{
     background: #f3f3f3;
     padding: 3em 0;
     gap: 1em;
-    box-shadow:0px 0px 8px #bbbbbb;
+    box-shadow:0px 5px 8px #bbbbbb;
     row-gap: 2em;
     
 }
