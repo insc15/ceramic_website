@@ -422,7 +422,7 @@ a{
 .product_info{
     width: 69%;
     justify-content: space-between;
-    /* align-items: center; */
+    align-items: center;
 }
 
 .product_title{
