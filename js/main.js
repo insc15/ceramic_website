@@ -5,7 +5,7 @@ function load_page(s,query){
 
 function load_img(){
   $("img[gsrc]").val(function() {
-    $(this).attr("src","https://drive.google.com/uc?id=" + $(this).attr("gsrc"));
+    $(this).attr("src","https://res.cloudinary.com/diyvwfxxk/image/upload/" + $(this).attr("gsrc"));
   });
 }
 

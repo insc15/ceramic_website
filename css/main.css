@@ -150,6 +150,70 @@ a{
 
 /* //////////////////////////////////////////////// */
 
+/* The container */
+.rad_checkbox {
+    display: block;
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .rad_checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .rad_checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .rad_checkbox input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .rad_checkbox input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .rad_checkbox .checkmark:after {
+       top: 6px;
+      left: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+  }
+
 .size_1-5{
     font-size: 1.5em;
 }
@@ -163,6 +227,10 @@ a{
 }
 
 @media only screen and (max-width: 500px){ /*desktop*/
+    .product_section{
+        grid-template-columns: auto!important;
+        gap: 0!important;
+    }
     .top_nav{
         padding: 1.5em 1em!important;
     }
@@ -288,8 +356,6 @@ a{
 }
 
 .product_list{
-    margin-top: 3em;
-    margin-bottom: 1em;
     gap: 1em;
 }
 
@@ -486,9 +552,14 @@ a{
 }
 
 .product_section{
+    display: grid;
+    grid-template-columns: 19% 79%;
+    gap: 1.5em;
     max-width: 80em;
     width: 95%;
     margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .new_arrival{
