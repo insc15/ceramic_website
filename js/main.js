@@ -7,6 +7,9 @@ function load_img(){
   $("img[gsrc]").val(function() {
     $(this).attr("src","https://res.cloudinary.com/diyvwfxxk/image/upload/" + $(this).attr("gsrc"));
   });
+  $("div[bsrc]").val(function() {
+    $(this).attr("style",`background-image:url("https://res.cloudinary.com/diyvwfxxk/image/upload/` + $(this).attr("bsrc") +`")`);
+  });
 }
 
 function toogle_side_nav(){
