@@ -164,6 +164,10 @@ a{
     border: solid 1px black;
 }
 
+[product] > h3{
+    height: 2.5em;
+}
+
 /* //////////////////////////////////////////////// */
 .sort_section *:not(h3,.checkmark){
     margin-left:.5em ;
@@ -237,9 +241,9 @@ a{
     font-size: 1.5em;
 }
 
-.price::before{
-    content: "$";
-}
+/* .price::after{
+    content: "Đ";
+} */
 
 @media only screen and (max-width: 1000px){ /*desktop*/
     .desktop{display: none!important;}

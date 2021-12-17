@@ -2,13 +2,13 @@ class Product {
   constructor(id, name, price, description, image_id = []){
     this.id = id;
     this.name = name;
-    this.price = price;
+    this.price = formatter.format(price);
     this.description = description;
     this.image_id = image_id;
   }
 
   preview_image(){
-    return this.image_id[0];
+    return "https://res.cloudinary.com/diyvwfxxk/image/upload/" + this.image_id[0];
   }
 
   get_image(){
@@ -19,6 +19,11 @@ class Product {
     return array;
   }
 
+  set_clickable(){
+    $("[product]").click(function(){
+      load_page("product","id="+$(this).attr("product"));
+    });
+  }
 }
 
 function Get_Product(s){
@@ -30,6 +35,14 @@ function Get_Product(s){
   })
 }
 
+var formatter = new Intl.NumberFormat('vi-VN', {
+  style: 'currency',
+  currency: 'VND',
+
+  // These options are needed to round to whole numbers if that's what you want.
+  //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+  //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+});
 
 function load_page(s,query){
   if(!query){query="";}else{query="?"+query;}
@@ -89,6 +102,12 @@ function update_cart(){
   }
 }
 
+function set_clickable(){
+  $("[product]").click(function(){
+    load_page("product","id="+$(this).attr("product"));
+  });
+}
+
 $(function(){ $(".page-header").load("components/header.html") });
 $(function(){ $(".page-footer").load("components/footer.html") });
 
@@ -98,9 +117,6 @@ document.onreadystatechange = function () {
 
       $(".menu_ico").click(function(){ toogle_side_nav(); });
       $("[button]").click(function(){ load_page($(this).attr("button")); });
-      $("[product]").click(function(){
-        load_page("product","id="+$(this).attr("product"));
-      });
 
       $(".remove_ico").click(function(){
         $(this).parent().parent().remove();

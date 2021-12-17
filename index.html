@@ -91,7 +91,8 @@
                 Get_Product().then(data => {
                     for (let i = 0;i < data.length - 1;i++){
                         let product = new Product(data[i].id,data[i].name,data[i].price,data[i].description,data[i].image_id);
-                        $(".product_list").html($(".product_list").html() + `<div class="item" product=""><img gsrc="${product.preview_image()}"><h3>${product.name}</h3><span class="price">${product.price}</span></div>`);
+                        $(".product_list").html($(".product_list").html() + `<div class="item" product="${product.id}"><img src="${product.preview_image()}"><h3>${product.name}</h3><span class="price">${product.price}</span></div>`);
+                        i + 2 == data.length ? product.set_clickable() : false; 
                     }
                 })
             </script>
