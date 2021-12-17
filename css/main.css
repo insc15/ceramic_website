@@ -610,9 +610,10 @@ a{
 }
 
 .new_arrival{
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: calc(100%/4) calc(100%/4) calc(100%/4) calc(100%/4);
     max-width: 61em;
     width: 90%;
+    justify-content: center;
 }
 
 .product_section > .product_list{
