@@ -1,3 +1,36 @@
+class Product {
+  constructor(id, name, price, description, image_id = []){
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.description = description;
+    this.image_id = image_id;
+  }
+
+  preview_image(){
+    return this.image_id[0];
+  }
+
+  get_image(){
+    let array = [];
+    this.image_id.forEach(s => {
+      array.push("https://res.cloudinary.com/diyvwfxxk/image/upload/"+s);
+    });
+    return array;
+  }
+
+}
+
+function Get_Product(s){
+  if(!s){s = "";}else{s="?"+s;}
+  return fetch("http://127.1.1.1/api/product"+s)
+  .then(res => { return res.json() })
+  .catch(err =>{
+    console.log("Lỗi: "+err);
+  })
+}
+
+
 function load_page(s,query){
   if(!query){query="";}else{query="?"+query;}
   window.location.href = s+".html"+query;
