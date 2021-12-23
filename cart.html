@@ -20,30 +20,73 @@
             <div class="banner">CART</div>
             <section>
                 <div class="grid_group product_container">
-                    <div class="item">
-                        <div class="flex_group just_a_element">
-                            <div product="" class="product_thumbnail" bsrc="v1635301271/product/9_d8d61x.webp"></div>
-                            <div class="product_info flex_group flex_wrap">
-                                <div class="product_title --hover--maincolor">Ceramic Bowl</div>
-                                <div class="product_price"><span class="price">3.00</span></div>
-                                <div class="product_count">
-                                    <div class="minus_ico"></div>
-                                    <input id="intLimitTextBox" type="text" value="1">
-                                    <div class="plus_ico"></div>
-                                </div>
-                            </div>
-                            <div class="remove_ico"></div>
-                        </div>
-                    </div>
+                    
                 </div>
             </section>
             <div class="checkout_container grid_group e_center ">
                 <div class="checkout_total flex_group">
-                    <span style="font-weight: bolder;font-size: 1.2em;">Total</span><span class="price">3.00</span>
+                    <span style="font-weight: bolder;font-size: 1.2em;">Total:</span><span class="price"></span>
                 </div>
                 <div class="button">Check Out</div>
             </div>
         </div>
         <div class="page-footer"></div>
+        <script>
+            function get_total(){
+                let total = 0;
+                for (let i = 0; i < $('.price').length - 1 ; i++){
+                    
+                    total += parseInt($('.price').eq(i).attr('raw'));
+                    console.log(parseInt($('.price').eq(i).attr('raw')))
+                }
+                return total;
+            }
+
+            function load_cart(id, price){
+                let element = $('#'+id+' > div > div.product_info.flex_group.flex_wrap > div.product_price > span');
+                get_cart_quantity();
+                element.attr('raw',price * $('#'+id+' > div > div.product_info.flex_group.flex_wrap > div.product_count > input').val());
+                element.text(formatter.format(price * $('#'+id+' > div > div.product_info.flex_group.flex_wrap > div.product_count > input').val()));
+                $(".checkout_total > .price").empty();
+                $(".checkout_total > .price").text(formatter.format(get_total()));
+            }
+            get_cart_quantity();
+            if ($('.product_container').children.length > 0){$('.product_container').empty();}
+            if(localStorage.getItem("client_cart")){
+                let array = localStorage.getItem("client_cart").split("&").map(s => { return JSON.parse(s); });
+                let total = 0;
+                array.map(element => {
+                    Get_Product("id="+element.id).then(res => {
+                        // return res[0];
+                        let product = res[0];
+                        let total_price = parseInt(product.price) * element.quantity;
+                        $(".product_container").html($(".product_container").html() + `
+                        <div id=${product.id} class="item">
+                            <div class="flex_group just_a_element">
+                                <div product="${product.id}" class="product_thumbnail" style="background:url(${product.preview_image()});"></div>
+                                <div class="product_info flex_group flex_wrap">
+                                    <div class="product_title --hover--maincolor">${product.name}</div>
+                                    <div class="product_price"><span raw="${parseInt(product.price) * element.quantity}" class="price">${formatter.format(total_price)}</span></div>
+                                    <div class="product_count">
+                                        <div onclick="update_cart('remove',${product.id},'-1',$(this));load_cart(${product.id},${product.price});" class="minus_ico"></div>
+                                        <input id="intLimitTextBox" type="text" value="${element.quantity}">
+                                        <div onclick="update_cart('add',${product.id},'1',$(this));load_cart(${product.id},${product.price});" class="plus_ico"></div>
+                                    </div>
+                                </div>
+                                <div class="remove_ico"></div>
+                            </div>
+                        </div>`
+                        );
+                        total += total_price;
+                        $(".checkout_total > .price").text(formatter.format(total));
+                    });
+                    
+                })
+                
+            }else{
+                $(".product_container").html("<h2 class='e_center'>You have no item :<<</h2>")
+                $(".price").text(formatter.format(0));
+            }
+        </script>
     </body>
 </html>

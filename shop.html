@@ -22,18 +22,29 @@
                 <div class="sort_section">
                     <h3>Sort By</h3>
                     <label class="rad_checkbox">Price
-                        <input type="radio" checked="checked" name="radio">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="rad_checkbox">A - Z
-                        <input type="radio" checked="checked" name="radio">
+                        <input type="radio" checked="checked" name="radio" data-string="order_by=price">
                         <span class="checkmark"></span>
                     </label>
                     <label class="rad_checkbox">Z - A
-                        <input type="radio" checked="checked" name="radio">
+                        <input type="radio" checked="checked" name="radio" data-string="order_by=price&sort=asc">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="rad_checkbox">A - Z
+                        <input type="radio" checked="checked" name="radio" data-string="order_by=price&sort=desc">
                         <span class="checkmark"></span>
                     </label>
                 </div>
+                <script>
+                    $("input").click(function (){
+                        $(".product_list").empty();
+                        Get_Product($(this).attr("data-string")).then(product => {
+                            for (let i = 0;i < product.length;i++){
+                                $(".product_list").html($(".product_list").html() + `<div class="item" product="${product[i].id}"><img src="${product[i].preview_image()}"><h3>${product[i].name}</h3><span class="price">${product[i].get_price()}</span></div>`);
+                                i + 1 == product.length ? product[i].set_clickable() : false; 
+                            }
+                        });
+                    })
+                </script>
                 <div class="grid_group e_center product_list">
                 </div>
             </section>
@@ -41,12 +52,11 @@
         <div class="page-footer"></div>
     </body>
     <script>
-        Get_Product().then(data => {
-            for (let i = 0;i < data.length - 1;i++){
-                let product = new Product(data[i].id,data[i].name,data[i].price,data[i].description,data[i].image_id);
-                $(".product_list").html($(".product_list").html() + `<div class="item" product="${product.id}"><img src="${product.preview_image()}"><h3>${product.name}</h3><span class="price">${product.price}</span></div>`);
-                i + 2 == data.length ? product.set_clickable() : false; 
+        Get_Product().then(product => {
+            for (let i = 0;i < product.length;i++){
+                $(".product_list").html($(".product_list").html() + `<div class="item" product="${product[i].id}"><img src="${product[i].preview_image()}"><h3>${product[i].name}</h3><span class="price">${product[i].get_price()}</span></div>`);
+                i + 1 == product.length ? product[i].set_clickable() : false; 
             }
-        })
+        });
     </script>
 </html>

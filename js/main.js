@@ -2,7 +2,7 @@ class Product {
   constructor(id, name, price, description, image_id = []){
     this.id = id;
     this.name = name;
-    this.price = formatter.format(price);
+    this.price = price;
     this.description = description;
     this.image_id = image_id;
   }
@@ -19,6 +19,10 @@ class Product {
     return array;
   }
 
+  get_price(){
+    return formatter.format(this.price);
+  }
+
   set_clickable(){
     $("[product]").click(function(){
       load_page("product","id="+$(this).attr("product"));
@@ -27,9 +31,16 @@ class Product {
 }
 
 function Get_Product(s){
+  let product =[];
   if(!s){s = "";}else{s="?"+s;}
   return fetch("http://127.1.1.1/api/product"+s)
-  .then(res => { return res.json() })
+  .then(res => { return res.json() }).then(data =>{ 
+    data.pop();
+    data.forEach(array => {
+      product.push(new Product(array.id,array.name,array.price,array.description,array.image_id));
+    });
+    return product;
+  })
   .catch(err =>{
     console.log("Lỗi: "+err);
   })
@@ -96,9 +107,64 @@ function getParameterByName(name, url = window.location.href) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-function update_cart(){
-  if($(".product_container").children().length < 1){
-    $(".product_container").html("<h2 class='e_center'>You have no item :<<</h2>")
+function update_cart(action, product,quantity, element){
+  switch (action) {
+    case "add":
+      if(localStorage.getItem("client_cart") != null){
+        let array = localStorage.getItem("client_cart").split("&").map(s => { return JSON.parse(s); });
+        for (let i = 0; i<array.length;i++){
+          if(array[i].id == product){
+            array[i].quantity = parseInt(array[i].quantity) + parseInt(quantity);
+            array[i].quantity.toString();
+            localStorage.setItem("client_cart",array.map(s => { return JSON.stringify(s); }).join("&"));
+            
+            let value = parseInt( element.parents().children("input").val() );
+            if ( value <= 100 ){
+              element.parents().children("input").val( value += 1 );   
+            }
+            return;
+          }
+        }
+      }
+      let string = localStorage.getItem("client_cart") == null ? "" : "&"+localStorage.getItem("client_cart");
+      let data = JSON.stringify({"id":product,"quantity":quantity});
+      localStorage.setItem("client_cart",data + string);
+    break;
+    case "remove":
+      if(localStorage.getItem("client_cart") != null){
+        let array = localStorage.getItem("client_cart").split("&").map(s => { return JSON.parse(s); });
+        for (let i = 0; i<array.length;i++){
+          if(array[i].id == product){
+            if (parseInt(array[i].quantity) + parseInt(quantity) > 0){
+              array[i].quantity = parseInt(array[i].quantity) + parseInt(quantity);
+              array[i].quantity.toString();
+              localStorage.setItem("client_cart",array.map(s => { return JSON.stringify(s); }).join("&"));
+
+              let value = parseInt( element.parents().children("input").val() );
+              if ( value > 1 ){
+                element.parents().children("input").val( value -= 1 );   
+              }
+              return;
+            }else{
+              array.splice(array.indexOf(array[i]), 1);
+              array == "" ? localStorage.removeItem('client_cart') : localStorage.setItem("client_cart",array.map(s => { return JSON.stringify(s); }).join("&"));
+              $("#"+product).remove();
+              if($(".product_container").children().length < 1){
+                $(".product_container").html("<h2 class='e_center'>You have no item :<<</h2>")
+              }
+            }
+          }
+        }
+      }
+    break;
+  } 
+}
+
+function get_cart_quantity(){
+  if(!localStorage.getItem("client_cart")){
+    $('.cart_count').text(0);
+  }else{
+    $('.cart_count').text(localStorage.getItem("client_cart").split("&").length);
   }
 }
 
@@ -117,25 +183,6 @@ document.onreadystatechange = function () {
 
       $(".menu_ico").click(function(){ toogle_side_nav(); });
       $("[button]").click(function(){ load_page($(this).attr("button")); });
-
-      $(".remove_ico").click(function(){
-        $(this).parent().parent().remove();
-        update_cart();
-      });
-
-      $(".minus_ico").click(function(){ 
-        let value = parseInt( $(this).parents().children("input").val() );
-        if ( value > 1 ){
-          $(this).parents().children("input").val( value -= 1 );   
-        }
-      });
-
-      $(".plus_ico").click(function(){ 
-        let value = parseInt( $(this).parents().children("input").val() );
-        if ( value <= 100 ){
-          $(this).parents().children("input").val( value += 1 );   
-        }
-      });
 
       if($("#intLimitTextBox").length){
         setInputFilter(document.getElementById("intLimitTextBox"), function(value) {

@@ -40,7 +40,7 @@
                             <input id="intLimitTextBox" type="text" value="1">
                             <div class="plus_ico"></div>
                         </div>
-                        <div class="button">Add to cart</div>
+                        <div onclick="update_cart('add',product.id,$('input').val());" class="button">Add to cart</div>
                     </div>
                 </div>
             </section>
@@ -48,14 +48,15 @@
         <div class="page-footer"></div>
     </body>
     <script>
-        Get_Product("id="+getParameterByName("id")).then(data => {
-                let product = new Product(data[0].id,data[0].name,data[0].price,data[0].description,data[0].image_id);
-                product.get_image().forEach(string => {
-                    $("#main-slider > div > ul").append(`<li class="splide__slide"><img src="${string}"></li>`);
-                    $("#thumbnail-slider > div > ul").append(`<li class="splide__slide"><img src="${string}"></li>`);
-                });
-                $(".product_info").prepend(`<div class="product_title">${product.name}</div><div><span class="price">${product.price}</span></div><div class="product_description"><span>${product.description}</span></div>`);
-                create_splide();
+        var product = [];
+        Get_Product("id="+getParameterByName("id")).then(element => {
+            product = element[0];
+            product.get_image().forEach(string => {
+                $("#main-slider > div > ul").append(`<li class="splide__slide"><img src="${string}"></li>`);
+                $("#thumbnail-slider > div > ul").append(`<li class="splide__slide"><img src="${string}"></li>`);
+            });
+            $(".product_info").prepend(`<div class="product_title">${product.name}</div><div><span class="price">${product.get_price()}</span></div><div class="product_description"><span>${product.description}</span></div>`);
+            create_splide();
         });
 
         function create_splide() {
@@ -80,6 +81,7 @@
             gap             : 10,
             pagination      : false,
             cover           : true,
+            focus           : 'center',
             dragMinThreshold: {
                 mouse: 4,
                 touch: 10,

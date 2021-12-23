@@ -323,6 +323,10 @@ a{
 @media only screen and (max-width: 400px){
 }
 
+[id^='thumbnail-slider-slide']:not(.is-active):hover{
+    border: 3px solid rgb(133, 133, 133)!important;
+}
+
 .splide__slide img{
     width: 100%;
 }
@@ -519,6 +523,7 @@ a{
     margin: 3em auto;
     border-top: 1px solid#c0c0c0;
     padding: 2em 0;
+    gap: 2em;
 }
 
 .product_container > .item{
@@ -531,8 +536,8 @@ a{
 
 .product_thumbnail{
     width: 18%;
-    background-position: center;
-    background-size: 100%;
+    background-position: center!important;
+    background-size: 100%!important;
     height: 10em;
 }
 
@@ -545,6 +550,7 @@ a{
 .product_title{
     font-size: 1.5em;
     /* font-weight: bolder; */
+    width: 12em;
 }
 
 .just_a_element{
