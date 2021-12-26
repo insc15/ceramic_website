@@ -37,7 +37,6 @@
                 for (let i = 0; i < $('.price').length - 1 ; i++){
                     
                     total += parseInt($('.price').eq(i).attr('raw'));
-                    console.log(parseInt($('.price').eq(i).attr('raw')))
                 }
                 return total;
             }
@@ -50,7 +49,6 @@
                 $(".checkout_total > .price").empty();
                 $(".checkout_total > .price").text(formatter.format(get_total()));
             }
-            get_cart_quantity();
             if ($('.product_container').children.length > 0){$('.product_container').empty();}
             if(localStorage.getItem("client_cart")){
                 let array = localStorage.getItem("client_cart").split("&").map(s => { return JSON.parse(s); });

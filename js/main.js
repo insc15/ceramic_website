@@ -122,6 +122,7 @@ function update_cart(action, product,quantity, element){
             if ( value <= 100 ){
               element.parents().children("input").val( value += 1 );   
             }
+            get_cart_quantity();
             return;
           }
         }
@@ -143,7 +144,15 @@ function update_cart(action, product,quantity, element){
               let value = parseInt( element.parents().children("input").val() );
               if ( value > 1 ){
                 element.parents().children("input").val( value -= 1 );   
+              }else{
+                array.splice(array.indexOf(array[i]), 1);
+                array == "" ? localStorage.removeItem('client_cart') : localStorage.setItem("client_cart",array.map(s => { return JSON.stringify(s); }).join("&"));
+                $("#"+product).remove();
+                if($(".product_container").children().length < 1){
+                  $(".product_container").html("<h2 class='e_center'>You have no item :<<</h2>")
+                }
               }
+              get_cart_quantity();
               return;
             }else{
               array.splice(array.indexOf(array[i]), 1);
@@ -158,6 +167,7 @@ function update_cart(action, product,quantity, element){
       }
     break;
   } 
+  get_cart_quantity();
 }
 
 function get_cart_quantity(){
@@ -177,12 +187,27 @@ function set_clickable(){
 $(function(){ $(".page-header").load("components/header.html") });
 $(function(){ $(".page-footer").load("components/footer.html") });
 
+function input_val_minus(ele){
+  let value = parseInt( ele.parents().children("input").val() );
+  if ( value > 1 ){
+    ele.parents().children("input").val( value -= 1 );   
+  }
+};
+
+function input_val_plus(ele){
+  let value = parseInt( ele.parents().children("input").val() );
+  if ( value <= 100 ){
+    ele.parents().children("input").val( value += 1 );   
+  }
+};
+
 document.onreadystatechange = function () {
   if (document.readyState === 'complete') {
       load_img();
 
       $(".menu_ico").click(function(){ toogle_side_nav(); });
       $("[button]").click(function(){ load_page($(this).attr("button")); });
+      
 
       if($("#intLimitTextBox").length){
         setInputFilter(document.getElementById("intLimitTextBox"), function(value) {
