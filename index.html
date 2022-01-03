@@ -90,7 +90,7 @@
             <script>
                 Get_Product("order_by=time").then(product => {
                     for (let i = 0;i < product.length;i++){
-                        $(".product_list").html($(".product_list").html() + `<div class="item" product="${product[i].id}"><img src="${product[i].preview_image()}"><h3>${product[i].name}</h3><span class="price">${product[i].get_price()}</span></div>`);
+                        $(".product_list").html($(".product_list").html() + `<a href="product.html?id=${product[i].id}"><div product class="item"><img src="${product[i].preview_image()}"><h3>${product[i].name}</h3><span class="price">${product[i].get_price()}</span></div></a>`);
                         i + 1 == product.length ? product[i].set_clickable() : false; 
                     }
                 })

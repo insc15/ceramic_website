@@ -34,15 +34,14 @@
         <script>
             function get_total(){
                 let total = 0;
-                for (let i = 0; i < $('.price').length - 1 ; i++){
-                    
-                    total += parseInt($('.price').eq(i).attr('raw'));
+                for (let i = 0; i < $('.product_price > .price').length ; i++){
+                    total += parseInt($('.product_price > .price').eq(i).attr('raw'));
                 }
                 return total;
             }
 
             function load_cart(id, price){
-                let element = $('#'+id+' > div > div.product_info.flex_group.flex_wrap > div.product_price > span');
+                let element = $('#'+id+' > div > div.product_info.flex_group.flex_wrap > div.product_price > span').eq("1");
                 get_cart_quantity();
                 element.attr('raw',price * $('#'+id+' > div > div.product_info.flex_group.flex_wrap > div.product_count > input').val());
                 element.text(formatter.format(price * $('#'+id+' > div > div.product_info.flex_group.flex_wrap > div.product_count > input').val()));
@@ -57,23 +56,25 @@
                     Get_Product("id="+element.id).then(res => {
                         // return res[0];
                         let product = res[0];
+                        // style="background:url(${product.preview_image()});"
                         let total_price = parseInt(product.price) * element.quantity;
                         $(".product_container").html($(".product_container").html() + `
                         <div id=${product.id} class="item">
                             <div class="flex_group just_a_element">
-                                <div product="${product.id}" class="product_thumbnail" style="background:url(${product.preview_image()});"></div>
+                                <a href="product.html?id=${product.id}"><div product="${product.id}" class="product_thumbnail"><img src="${product.preview_image()}"></div></a>
                                 <div class="product_info flex_group flex_wrap">
-                                    <div class="product_title --hover--maincolor">${product.name}</div>
-                                    <div class="product_price"><span raw="${parseInt(product.price) * element.quantity}" class="price">${formatter.format(total_price)}</span></div>
+                                    <div class="product_title"><span class="--hover__maincolor">${product.name}</span><div style="font-size:.7em;" class="original_product_price">${product.get_price()}</div></div>
+                                    <div class="product_price flex_group"><span>Tổng:</span><span raw="${parseInt(product.price) * element.quantity}" class="price">${formatter.format(total_price)}</span></div>
                                     <div class="product_count">
                                         <div onclick="update_cart('remove',${product.id},'-1',$(this));load_cart(${product.id},${product.price});" class="minus_ico"></div>
-                                        <input id="intLimitTextBox" type="text" value="${element.quantity}">
+                                        <input disabled id="intLimitTextBox" type="text" value="${element.quantity}">
                                         <div onclick="update_cart('add',${product.id},'1',$(this));load_cart(${product.id},${product.price});" class="plus_ico"></div>
                                     </div>
                                 </div>
-                                <div class="remove_ico"></div>
+                                <div onclick="update_cart('remove',${product.id},parseInt($('input').val())*-1,$(this));load_cart(${product.id},${product.price});" class="remove_ico"></div>
                             </div>
-                        </div>`
+                        </div>
+                        `
                         );
                         total += total_price;
                         $(".checkout_total > .price").text(formatter.format(total));

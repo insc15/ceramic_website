@@ -37,7 +37,7 @@
                     <div class="product_info grid_group">
                         <div class="product_count">
                             <div onclick="input_val_minus($(this))" class="minus_ico"></div>
-                            <input id="intLimitTextBox" type="text" value="1">
+                            <input disabled id="intLimitTextBox" type="text" value="1">
                             <div onclick="input_val_plus($(this))" class="plus_ico"></div>
                         </div>
                         <div onclick="update_cart('add',product.id,$('input').val(),$(this));" class="button">Add to cart</div>
@@ -55,7 +55,7 @@
                 $("#main-slider > div > ul").append(`<li class="splide__slide"><img src="${string}"></li>`);
                 $("#thumbnail-slider > div > ul").append(`<li class="splide__slide"><img src="${string}"></li>`);
             });
-            $(".product_info").prepend(`<div class="product_title">${product.name}</div><div><span class="price">${product.get_price()}</span></div><div class="product_description"><span>${product.description}</span></div>`);
+            $(".product_info").prepend(`<div class="product_title">${product.name}</div><div>${product.get_price()}</div><div class="product_description"><span>${product.description}</span></div>`);
             create_splide();
         });
 
